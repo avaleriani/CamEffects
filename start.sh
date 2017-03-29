@@ -1,4 +1,4 @@
 #!/bin/bash
 cd /etc/webapp/
 npm install
-node server.js
+http-server -a localhost -p 80
