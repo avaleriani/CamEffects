@@ -1,0 +1,9 @@
+version: 1.0
+os: linux
+files:
+  - source: /
+    destination: /etc/webapp
+hooks:
+  ApplicationStart:
+    - location: /etc/webapp/start.sh
+      timeout: 3600
