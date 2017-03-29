@@ -1,0 +1,44 @@
+body {
+    margin: 20px;
+    font: 1.5em/1.2 sans-serif;
+    text-align: center;
+    background-color: #000000;
+}
+
+figure {
+    display: inline-block;
+    margin: 10px;
+    vertical-align: top;
+}
+
+figcaption {
+    text-align: left;
+    font-weight: bold;
+}
+
+video {
+    display: none;
+}
+
+video, canvas {
+    width: 800px;
+    height: 600px;
+    background-color: #000000;
+}
+
+#stopBtn {
+    border: none;
+    background-color: #ffffff;
+    color: #000000;
+    text-transform: lowercase;
+    font-size: 1rem;
+
+}
+
+canvas {
+    /*image-rendering: pixelated;*/
+    image-rendering: crisp-edges;
+}
+
+
+
