@@ -170,6 +170,18 @@ var DiffCamEngine = (function () {
 
     function processDiff(diffImageData) {
         var rgba = diffImageData.data;
+//color variables
+
+        var r1 = 84;
+        var r2 = 76;
+        var r3 = 137;
+
+        var w1 = 255;
+        var w2 = 255;
+        var w3 = 255;
+
+        var black = 0;
+
 
         // pixel adjustments are done by reference directly on diffImageData
         var score = 0;
@@ -183,17 +195,17 @@ var DiffCamEngine = (function () {
             //     console.log(parseInt(Math.floor(pixelDiff)) < 500);
             // }
 
-            if(parseInt(Math.floor(pixelDiff)) < parseInt(25)){
-                rgba[i] = 255;
-                rgba[i + 1] =255;
-                rgba[i + 2] = 255;
-            }else if (pixelDiff >= pixelDiffThreshold + 100) {
-                rgba[i] = 255;
-                rgba[i + 1] = 255;
-                rgba[i + 2] = 255;
+            if (parseInt(Math.floor(pixelDiff)) < parseInt(25)) {
+                rgba[i] = r1;
+                rgba[i + 1] = r2;
+                rgba[i + 2] = r3;
+            } else if (pixelDiff >= pixelDiffThreshold + 100) {
+                rgba[i] = w1;
+                rgba[i + 1] = w2;
+                rgba[i + 2] = w3;
             } else {
-                rgba[i] = 0;
-                rgba[i + 1] = normalized - (normalized / 5);
+                rgba[i] = w3;
+                rgba[i + 1] =w3;
                 rgba[i + 2] = normalized - (normalized / 2);
             }
 
