@@ -5,5 +5,5 @@ files:
     destination: /etc/webapp
 hooks:
   ApplicationStart:
-    - location: /etc/webapp/start.sh
+    - location: start.sh
       timeout: 3600
