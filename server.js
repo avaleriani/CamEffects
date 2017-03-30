@@ -2,7 +2,7 @@ var https = require('https');
 var fs = require('fs');
 var express = require('express');
 var app = express();
-var options = {
+var credentials = {
   key: fs.readFileSync('./privatekey.pem'),
   cert: fs.readFileSync('./server.crt')
 };
