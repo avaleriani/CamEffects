@@ -1,59 +1,46 @@
-const http = require('http');
-const url = require('url');
-const fs = require('fs');
-const path = require('path');
-const port = process.argv[2] || 80;
+var http = require("http"),
+    url = require("url"),
+    path = require("path"),
+    fs = require("fs")
+    port = process.argv[2] || 8888;
 
-http.createServer(function (req, res) {
-  console.log(`${req.method} ${req.url}`);
+http.createServer(function(request, response) {
 
-  // parse URL
-  const parsedUrl = url.parse(req.url);
-  // extract URL path
-  let pathname = `.${parsedUrl.pathname}`;
-  // based on the URL path, extract the file extention. e.g. .js, .doc, ...
-  const ext = path.parse(pathname).ext;
-  // maps file extention to MIME typere
-  const map = {
-    '.ico': 'image/x-icon',
-    '.html': 'text/html',
-    '.js': 'text/javascript',
-    '.json': 'application/json',
-    '.css': 'text/css',
-    '.png': 'image/png',
-    '.jpg': 'image/jpeg',
-    '.wav': 'audio/wav',
-    '.mp3': 'audio/mpeg',
-    '.svg': 'image/svg+xml',
-    '.pdf': 'application/pdf',
-    '.doc': 'application/msword'
+  var uri = url.parse(request.url).pathname
+    , filename = path.join(process.cwd(), uri);
+
+  var contentTypesByExtension = {
+    '.html': "text/html",
+    '.css':  "text/css",
+    '.js':   "text/javascript"
   };
 
-  fs.exists(pathname, function (exist) {
-    if(!exist) {
-      // if the file is not found, return 404
-      res.statusCode = 404;
-      res.end(`File ${pathname} not found!`);
+  fs.exists(filename, function(exists) {
+    if(!exists) {
+      response.writeHead(404, {"Content-Type": "text/plain"});
+      response.write("404 Not Found\n");
+      response.end();
       return;
     }
 
-    // if is a directory search for index file matching the extention
-    if (fs.statSync(pathname).isDirectory()) pathname += '/index' + ext;
+    if (fs.statSync(filename).isDirectory()) filename += '/index.html';
 
-    // read file from file system
-    fs.readFile(pathname, function(err, data){
-      if(err){
-        res.statusCode = 500;
-        res.end(`Error getting the file: ${err}.`);
-      } else {
-        // if the file is found, set Content-type and send data
-        res.setHeader('Content-type', map[ext] || 'text/plain' );
-        res.end(data);
+    fs.readFile(filename, "binary", function(err, file) {
+      if(err) {        
+        response.writeHead(500, {"Content-Type": "text/plain"});
+        response.write(err + "\n");
+        response.end();
+        return;
       }
+
+      var headers = {};
+      var contentType = contentTypesByExtension[path.extname(filename)];
+      if (contentType) headers["Content-Type"] = contentType;
+      response.writeHead(200, headers);
+      response.write(file, "binary");
+      response.end();
     });
   });
+}).listen(parseInt(port, 10));
 
-
-}).listen(parseInt(port));
-
-console.log(`Server listening on port ${port}`);
+console.log("Static file server running at\n  => http://localhost:" + port + "/\nCTRL + C to shutdown");
