@@ -19,7 +19,7 @@ function init() {
         initSuccessCallback: initSuccess,
         initErrorCallback: initError,
         captureCallback: capture,
-        captureIntervalTime: 100, //Number of ms between capturing images from the stream
+        captureIntervalTime: 35, //Number of ms between capturing images from the stream
         captureWidth: screenWidth - 150, //Width of captured images from stream
         captureHeight: screenHeight - 150, //Height of capture images from stream
         pixelDiffThreshold: 120, //Minimum difference in a pixel to be considered changed
