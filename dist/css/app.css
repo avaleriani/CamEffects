@@ -21,8 +21,8 @@ video {
 }
 
 video, canvas {
-    width: 800px;
-    height: 600px;
+    width: calc(100% - 100px);
+    height: calc(100% - 100px);;
     background-color: #000000;
 }
 
@@ -36,8 +36,6 @@ video, canvas {
 }
 
 canvas {
-    /*image-rendering: pixelated;*/
-    image-rendering: crisp-edges;
 }
 
 
