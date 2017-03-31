@@ -2,12 +2,14 @@
 cd /etc/webapp/
 echo "Installing pm2"
 sudo npm install pm2 -g
-echo whereis pm2
+pathpm2=`whereis -b pm2`
+echo "Pm2 yarn: $pathpm2"
 echo "Installing yarn"
 sudo npm install yarn -g
-echo whereis yarn
-export PATH=$PATH:whereis pm2
-export PATH=$PATH:whereis yarn
+pathYarn=`whereis -b yarn`
+echo "Path yarn: $pathYarn"
+export PATH=$PATH:pathpm2
+export PATH=$PATH:pathYarn
 source ~/.bashrc
 sudo yarn install
 sudo pm2 start server.js
