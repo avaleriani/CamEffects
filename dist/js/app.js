@@ -22,8 +22,8 @@ function init() {
         captureIntervalTime: 100, //Number of ms between capturing images from the stream
         captureWidth: screenWidth - 150, //Width of captured images from stream
         captureHeight: screenHeight - 150, //Height of capture images from stream
-        pixelDiffThreshold: 150, //Minimum difference in a pixel to be considered changed
-        scoreThreshold: 100,  //	Minimum number of changed pixels for an image to be considered as having motion
+        pixelDiffThreshold: 120, //Minimum difference in a pixel to be considered changed
+        scoreThreshold: 85,  //	Minimum number of changed pixels for an image to be considered as having motion
         diffWidth: 800, //Width of (usually downsized) images used for diffing and showing motion
         diffHeight: 600 //Height of (usually downsized) images used for diffing and showing motion
     });
