@@ -76,10 +76,10 @@ var DiffCamEngine = (function () {
         motionCanvas.width = diffWidth;
         motionCanvas.height = diffHeight;
         motionContext = motionCanvas.getContext('2d');
-        motionContext.mozImageSmoothingEnabled = false;
-        motionContext.webkitImageSmoothingEnabled = false;
-        motionContext.msImageSmoothingEnabled = false;
-        motionContext.imageSmoothingEnabled = false;
+        motionContext.mozImageSmoothingEnabled = true;
+        motionContext.webkitImageSmoothingEnabled = true;
+        motionContext.msImageSmoothingEnabled = true;
+        motionContext.imageSmoothingEnabled = true;
 
         requestWebcam();
     }
