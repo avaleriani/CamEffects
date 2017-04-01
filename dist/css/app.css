@@ -21,8 +21,8 @@ video {
 }
 
 video, canvas {
-    width: calc(100% - 100px);
-    height: calc(100% - 100px);;
+    width: 1024px;
+    height: 768px;
     background-color: #000000;
 }
 
