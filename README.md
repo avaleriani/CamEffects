@@ -4,7 +4,7 @@ Run local server
     
     
     
-##Good color combinations:
+#### Good color combinations:
 //Black and white 
 
             if (pixelDiff + 85 >= pixelDiffThreshold) {
